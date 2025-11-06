@@ -14,10 +14,10 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'price',
-        'image_path',
-        'category_id',
         'description',
+        'category',
+        'price',
+        'stock_quantity',
     ];
 
     protected $appends = [
@@ -26,7 +26,7 @@ class Product extends Model
     ];
 
     public function category(){
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo(Category::class, 'category', 'name');
     }
 
     public function getCategoryAttribute(){
@@ -36,5 +36,35 @@ class Product extends Model
     public function getTaxedPriceAttribute(){
         return $this->price * 1.10;
     }
+    /** 
+     * 商品が持つ複数の画像を取得
+     */
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    /**
+     * 商品が持つ複数のバリエーションを取得
+     */
+    public function variants()
+    {
+        return $this->hasMany(ProductVariant::class);
+    }
     
+    /**
+     * この商品をお気に入り登録しているユーザーを取得
+     */
+    public function favoritedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'favorites', 'product_id', 'user_id');
+    }
+
+    /**
+     * この商品が含まれる注文詳細を取得
+     */
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

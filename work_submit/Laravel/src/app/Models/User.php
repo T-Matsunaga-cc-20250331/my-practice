@@ -20,7 +20,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'password_bash',
+        // roleカラムを追加
+        'role',
     ];
 
     /**
@@ -29,7 +31,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'password_bash',
         'remember_token',
     ];
 
@@ -41,4 +43,30 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * このModelで使用する認証パスワードのカラム名をオーバーライド
+     *
+     * @return string
+     */
+    public function getAuthPasswordName()
+    {
+        return 'password_hash';
+    }
+
+    /**
+     * ユーザーが持つ注文を取得
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
+     * ユーザーがお気に入り登録した商品を取得
+     */
+    public function favoriteProducts()
+    {
+        return $this->belongsToMany(Product::class, 'favorites', 'user_id', 'product_id');
+    }
 }
