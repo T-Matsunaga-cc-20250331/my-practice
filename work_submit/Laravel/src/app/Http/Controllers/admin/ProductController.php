@@ -13,4 +13,7 @@ class ProductController extends Controller
     // return view('admin.product.add', compact('categories'));
     return view('admin.product.add');
   }
+  public function index(){
+    return view('index');
+  }
 }
