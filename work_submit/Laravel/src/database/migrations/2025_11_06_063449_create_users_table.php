@@ -15,19 +15,20 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id('id');
-            $table->string('last_name_kana');
-            $table->string('first_name_kana');
-            $table->string('last_name_kanji');
-            $table->string('first_name_kanji');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->integer('role');
-            $table->rememberToken();
+            $table->string('name',255);
+            $table->string('email',255)->unique();
+            $table->string('password_hash',255);
+            $table->integer('role')->unsigned();
             $table->timestamps();
-            $table->softDeletes();
+            $table->softDeletes(); 
         });
     }
+    // 1	id	ID	bigint unsigned(20)
+    // 2	name	氏名	varchar(255)
+    // 3	email	メールアドレス	varchar(255)
+    // 4	password_hash	パスワード	varchar(255)
+    // 5	created_at	作成日時	timestamp
+    // 6	updated_at	更新日時	timestamp
 
     /**
      * Reverse the migrations.
