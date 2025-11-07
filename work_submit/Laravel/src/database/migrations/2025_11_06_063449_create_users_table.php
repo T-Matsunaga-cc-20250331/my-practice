@@ -17,9 +17,10 @@ class CreateUsersTable extends Migration
             $table->id('id');
             $table->string('name',255);
             $table->string('email',255)->unique();
-            $table->string('password_bash',255);
+            $table->string('password_hash',255);
             $table->integer('role')->unsigned();
             $table->timestamps();
+            $table->softDeletes(); 
         });
     }
     // 1	id	ID	bigint unsigned(20)
