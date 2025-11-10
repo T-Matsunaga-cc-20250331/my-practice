@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\TopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\Auth\RegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [Controller::class, 'top'])->name('top'); 
+Route::get('/', [TopController::class, 'top'])->name('top'); 
 // 管理画面
 Route::group(['prefix' => '/admin', 'as' => 'admin.'], function(){
   // 管理画面トップ

@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('category',255);
             $table->bigInteger('price')->unsigned();
             $table->bigInteger('stock_quantity')->unsigned();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
