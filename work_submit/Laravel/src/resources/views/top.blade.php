@@ -25,6 +25,11 @@
             @endauth
             </ul>  
         </div>
+        <!-- 検索フォームの例 -->
+        <div style="padding: 15px; background-color: #f9f9f9; border-radius: 6px; margin-bottom: 20px;">
+            <input type="text" id="search-keyword" placeholder="キーワードを入力してください (例: Tシャツ)" style="padding: 8px; width: 250px;">
+            <button id="search-button" style="padding: 8px 15px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">検索</button>
+        </div>
         <header>
             <div>
                 <input id="mens-tab" class="tab-input" type="radio" name="tab_item" checked>

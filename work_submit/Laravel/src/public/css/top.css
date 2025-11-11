@@ -21,8 +21,3 @@
     color: white;
     border-color: #007bff;
 }
-
-/* 追加必須②：アクティブなコンテンツを表示 */
-.tab-content-container.active {
-    display: block;
-}

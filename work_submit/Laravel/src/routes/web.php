@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\TopController;
+use App\Http\Controllers\Api\ProductSearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,6 @@ Route::post('login', [LoginController::class, 'login']);
 
 // ログアウト
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+//api
+Route::get('/products/search', [ProductSearchController::class, 'index']);
