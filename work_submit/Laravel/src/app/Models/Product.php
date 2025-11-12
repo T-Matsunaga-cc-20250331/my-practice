@@ -21,17 +21,8 @@ class Product extends Model
     ];
 
     protected $appends = [
-        'category',
         'taxed_price'
     ];
-
-    public function category(){
-        return $this->belongsTo(Category::class, 'category', 'name');
-    }
-
-    public function getCategoryAttribute(){
-        return Category::find($this->category_id)->category;
-    }
 
     public function getTaxedPriceAttribute(){
         return $this->price * 1.10;
