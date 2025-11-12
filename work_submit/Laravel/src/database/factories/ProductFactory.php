@@ -15,12 +15,21 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        // JavaScriptのタブIDと完全に一致させるカテゴリキー
+        // JavaScriptのタブIDと一致させる
         $categories = ['mens-tab', 'ladies-tab', 'kids-tab']; 
         $productTypes = ['Tシャツ', 'ジャケット', 'パンツ', 'ブラウス', 'スカート', 'パーカー', 'スニーカー'];
         
         $category = Arr::random($categories);
         $name = Arr::random($productTypes);
+
+        // 軽量な日本語説明文
+        $descriptions = [
+            '快適な着心地のコットン素材を使用した定番アイテムです。',
+            '季節を問わず活躍する高品質なデザインです。',
+            'プレゼントにも最適な上質な仕上がりになっています。',
+            '洗濯後の縮みが少なく、長く愛用いただける商品です。',
+            'シンプルなデザインでさまざまなスタイルに合わせやすいです。'
+        ];
 
         return [
             'name' => "{$category}向け {$name} " . $this->faker->numberBetween(1, 100), 
@@ -29,8 +38,7 @@ class ProductFactory extends Factory
             'category' => $category, 
             
             'price' => $this->faker->numberBetween(2000, 15000), 
-            'description' => $this->faker->sentence(8), 
-            
+            'description' => $descriptions[array_rand($descriptions)], 
             // 'stock_quantity' のダミーデータを追加
             'stock_quantity' => $this->faker->numberBetween(0, 500), 
         ];
